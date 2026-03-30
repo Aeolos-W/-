@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>考研英语数据库</title>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js""https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://unpkg.com/docx@8.5.0/build/index.umd.js"></script>
     <script src="https://unpkg.com/file-saver@2.0.5/dist/FileSaver.min.js"></script>
     <style>
@@ -1083,15 +1083,26 @@
                 renderToc();
                 
                 // 渲染内容
-                if (specificLine && typeof specificLine === 'number') {
-                    // 跳转到特定行附近的内容
-                    const lines = book.content.split('\n');
-                    let chapterStart = specificLine;
-                    while (chapterStart > 0 && !lines[chapterStart].startsWith('#')) {
-                        chapterStart--;
-                    }
-                    const sectionContent = lines.slice(chapterStart, chapterStart + 50).join('\n');
-                    renderContent(sectionContent);
+                        if (typeof specificLine === 'number') {
+            // 跳转到特定行附近的内容
+            const lines = book.content.split('\n');
+            let chapterStart = specificLine;
+            while (chapterStart > 0 && !lines[chapterStart].startsWith('#')) {
+                chapterStart--;
+            }
+            
+            // 找到章节结束位置（下一个标题处），确保包含匹配行
+            let chapterEnd = specificLine;
+            for (let i = specificLine + 1; i < lines.length; i++) {
+                if (lines[i].startsWith('# ') || lines[i].startsWith('## ')) {
+                    chapterEnd = i - 1;
+                    break;
+                }
+                chapterEnd = i;
+            }
+            
+            const sectionContent = lines.slice(chapterStart, chapterEnd + 1).join('\n');
+            renderContent(sectionContent);
                     
                     // 高亮当前章节
                     setTimeout(() => {
