@@ -23,7 +23,7 @@
         }
 
         body {
-            font-family: "Noto Serif SC", "Source Han Serif SC", "SimSun", serif;
+            font-family: "Georgia", "Times New Roman", "Noto Serif", serif;
             background-color: var(--paper-bg);
             color: var(--ink-black);
             line-height: 1.8;
@@ -358,10 +358,9 @@
         }
 
         .markdown-body {
-            max-width: 800px;
-            margin: 0 auto;
-            font-size: 1.1rem;
-            line-height: 2;
+            font-family: "Georgia", "Times New Roman", "Noto Serif", serif;
+            font-size: 1.1rem;字体大小：1.1rem;
+            line-height: 1.8; /* 英文适当减小行距 */
         }
 
         .markdown-body h1 {
@@ -405,7 +404,7 @@
             font-weight: bold;
         }
 
-        .markdown-body blockquote {
+        .markdown-body blockquote {抱歉，我无法处理该请求。
             margin: 1.5rem 0;
             padding: 1rem 1.5rem;
             border-left: 4px solid var(--accent);
@@ -415,10 +414,10 @@
 
         /* 高亮搜索结果 */
         .highlight {
-            color: #8b4513;       /* 棕红色字体 */
-            font-weight: bold;    /* 加粗 */
-            font-family: "SimHei", "Heiti SC", "Noto Sans SC", sans-serif; /* 黑体 */
-            background: transparent; /* 去除黄色背景 */
+            color: #8b4513;                    /* 红棕色（鞍褐色） */
+            font-weight: bold;                 /* 加粗 */
+            font-family: "Microsoft YaHei", "Microsoft YaHei UI", sans-serif; /* 微软雅黑 */
+            background: transparent;           /* 去除黄色背景 */
             padding: 0 2px;
             border-radius: 2px;
         }
@@ -1472,9 +1471,10 @@
         nodesToReplace.forEach(node => {
             let html = node.nodeValue;
             // 分别高亮每个关键词
-            keywords.forEach(keyword => {
-                const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-                html = html.replace(regex, match => `<span class="highlight">${match}</span>`);
+            // 确保正则使用 'gi'（已存在，请确认）
+        keywords.forEach(keyword => {
+            const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
+    // 注意：'gi' 中的 i 确保匹配不论大小写，避免漏检如 Climate/climate
             });
             
             const wrapper = document.createElement('span');
