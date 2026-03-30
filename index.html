@@ -1472,9 +1472,9 @@
             let html = node.nodeValue;
             // 分别高亮每个关键词
             // 确保正则使用 'gi'（已存在，请确认）
-        keywords.forEach(keyword => {
+            keywords.forEach(keyword => {
             const regex = new RegExp(keyword.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'gi');
-    // 注意：'gi' 中的 i 确保匹配不论大小写，避免漏检如 Climate/climate
+            html = html.replace(regex, match => `<span class="highlight">${match}</span>`);
             });
             
             const wrapper = document.createElement('span');
@@ -1687,3 +1687,4 @@ async function exportToDocx(results, query, mode, timestamp) {
     </script>
 </body>
 </html>
+   考研英语数据库     * { margin: 0; padding: 0; box-sizing: border-box; } :root { --ink-black: #2c2c2c; --paper-bg: #f7f3e9; --accent: #8b4513; --border: #d4c4b0; --hover: #e8dfcf; } body { font-family: "Georgia", "Times New Roman", "Noto Serif", serif; background-color: var(--paper-bg); color: var(--ink-black); line-height: 1.8; min-height: 100vh; } /* 首页样式 - 极简风格 */ .home-page { display: flex; flex-direction: column;
